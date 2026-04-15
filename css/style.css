@@ -1,0 +1,179 @@
+/* ============================================================
+   CineVault — Custom Styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg:       #07070e;
+  --surface:  #0f0f1a;
+  --card:     #161625;
+  --accent:   #f0a500;
+  --hot:      #ff4757;
+  --text:     #eeeef5;
+  --muted:    #7777aa;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar              { width: 5px; height: 5px; }
+::-webkit-scrollbar-track        { background: var(--surface); }
+::-webkit-scrollbar-thumb        { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: #ffd23f; }
+
+/* ---- Horizontal scroll ---- */
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--surface);
+}
+
+/* ---- Movie card ---- */
+.movie-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.movie-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+  z-index: 10;
+}
+
+/* ---- Rating badge ---- */
+.rating-badge {
+  background: rgba(240, 165, 0, 0.92);
+  color: #07070e;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ---- Genre badge ---- */
+.genre-badge {
+  background: rgba(240, 165, 0, 0.12);
+  border: 1px solid rgba(240, 165, 0, 0.3);
+  color: var(--accent);
+}
+
+/* ---- Skeleton shimmer ---- */
+.skeleton {
+  background: linear-gradient(90deg, var(--card) 25%, #1e1e35 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ---- Navbar glass ---- */
+.nav-glass {
+  background: rgba(7, 7, 14, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ---- Hero gradient overlay ---- */
+.hero-gradient {
+  background:
+    linear-gradient(to right,  rgba(7,7,14,0.98) 25%, rgba(7,7,14,0.6) 55%, rgba(7,7,14,0.1) 100%),
+    linear-gradient(to top,    rgba(7,7,14,1)    0%,  rgba(7,7,14,0)   50%);
+}
+
+/* ---- Button styles ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #07070e;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background: #ffd23f;
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.2s ease;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+/* ---- Tailwind overrides ---- */
+.bg-bg      { background-color: var(--bg); }
+.bg-surface { background-color: var(--surface); }
+.bg-card    { background-color: var(--card); }
+.text-muted { color: var(--muted); }
+.text-accent { color: var(--accent); }
+
+/* ---- Search input ---- */
+.search-input {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 12px 18px;
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.08);
+}
+.search-input::placeholder { color: var(--muted); }
+
+/* ---- Section heading ---- */
+.section-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.875rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+/* ---- Page-load animation ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s ease forwards; }
+
+/* ---- Responsive grid ---- */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 480px)  { .movies-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px)  { .movies-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1024px) { .movies-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 1280px) { .movies-grid { grid-template-columns: repeat(6, 1fr); } }
